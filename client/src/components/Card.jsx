@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 
 export default function Card({ movie, deleteB, addB }) {
@@ -52,11 +53,13 @@ export default function Card({ movie, deleteB, addB }) {
 		<div style={{ position: "relative" }}>
 			{isLoading ? (
 				<div>
-					<SkeletonTheme>
-						<Skeleton
-							height={300}
-							duration={2}
-						/>
+					<SkeletonTheme
+						baseColor="#313131"
+						highlightColor="#525252">
+						<Skeleton height={"40px"}></Skeleton>
+						<Skeleton height={"20px"}></Skeleton>
+						<Skeleton height={"80px"}></Skeleton>
+						<Skeleton height={"150px"}></Skeleton>
 					</SkeletonTheme>
 				</div>
 			) : (
