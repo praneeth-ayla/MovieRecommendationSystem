@@ -1,72 +1,30 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import useGetFullDetails from "../hooks/useGetFullDetails";
+import Card from "../components/Card";
+import NavBar from "../components/Navbar";
+import useGetRecommendedList from "../hooks/useGetRecommendations";
+import useGetWatchedFavoritesList from "../hooks/useGetWatchedFavoritesList";
 
 export default function Home() {
-	const [previouslyWatched, setPreviouslyWatched] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const { watchedFavoritesList } = useGetWatchedFavoritesList();
 
-	useEffect(() => {
-		axios
-			.get("http://localhost:3000/movie/watched-list", {
-				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZkNmZlNGY1NzVkMDRmMWY1Yjk5M2YiLCJpYXQiOjE3MTExMDgxMDF9.-3FrNtxD69V-GSK2vEk0vZv6nDoLS7IsBZFtNc1H43o",
-				},
-			})
-			.then((res) => {
-				setPreviouslyWatched(res.data.watchedList);
-				setLoading(false); // Set loading to false when data fetching is complete
-			})
-			.catch((error) => {
-				console.error(
-					"Error fetching previously watched movies:",
-					error
-				);
-				setLoading(false); // Set loading to false on error
-			});
-	}, []);
-	console.log(previouslyWatched);
-
-	const { getFullDetails, fullLoading } =
-		useGetFullDetails(previouslyWatched);
-
-	if (fullLoading) {
-		console.log("loading");
-	} else {
-		console.log(getFullDetails, "fullDeatils");
-	}
+	const { recommendedList } = useGetRecommendedList();
+	const { getFullDetails } = useGetFullDetails(recommendedList);
 
 	return (
 		<div>
-			hiiii
-			{loading ? (
-				<h1>loading...</h1>
-			) : (
-				<div>
-					{previouslyWatched.map((movie, id) => (
-						<div
-							key={id}
-							onClick={() => printFun(movie)}>
-							{movie}
-						</div>
-					))}
-				</div>
-			)}
-		</div>
-	);
-}
-
-const printFun = (movieDetails) => {
-	console.log(movieDetails);
-};
-
-function ShowDetails({ movieDetails, movieTitle, getFullDetails }) {
-	return (
-		<div>
-			<h1 onClick={() => printFun(movieDetails, getFullDetails)}>
-				{movieTitle}
-			</h1>
+			<NavBar currentPage={"home"}></NavBar>
+			<div className="pt-10 pb-5 font-semibold">
+				Based on your Past Watched Favorites:
+			</div>
+			<div className="grid grid-cols-1 gap-3 mb-6 xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3">
+				{getFullDetails.map((movie, id) => (
+					<Card
+						movie={movie}
+						key={id}
+						deleteB={false}
+						addB={true}></Card>
+				))}
+			</div>
 		</div>
 	);
 }
