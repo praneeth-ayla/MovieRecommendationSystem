@@ -18,12 +18,16 @@ const authMiddleware = (req, res, next) => {
             req.userId = decoded.userId;
             next();
         } else {
-            return res.json({}).status(403);
+            return res.status(403).json({
+                msg: "You do not have access"
+            });
 
         }
 
     } catch (err) {
-        return res.json({}).status(403);
+        return res.status(403).json({
+            msg: "You do not have access"
+        });
     }
 
 }
