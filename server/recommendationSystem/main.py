@@ -6,7 +6,7 @@ import json
 import sys
 
 # Load movie data
-movies_data = pd.read_csv('mlAlgo/movies.csv')
+movies_data = pd.read_csv('recommendationSystem/movies.csv')
 
 # Select relevant features
 selected_features = ['genres', 'keywords', 'tagline', 'cast', 'director']

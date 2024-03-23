@@ -42,7 +42,7 @@ router.get('/', authMiddleware, async (req, res) => {
 
 
     // Run Python script with the watched list as input
-    const pythonProcess = spawn('python3', ['/home/ran/repos/movieRecommendation/server/mlAlgo/main.py'], {
+    const pythonProcess = spawn('python3', ['recommendationSystem/main.py'], {
         stdio: ['pipe', 'pipe', 'pipe', 'ipc'] // Enable inter-process communication
     });
 
@@ -92,4 +92,3 @@ router.delete('/', authMiddleware, async (req, res) => {
 
 
 module.exports = router;
-
