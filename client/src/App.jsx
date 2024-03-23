@@ -3,12 +3,13 @@ import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import NewPage from "./pages/NewPage";
 
 function App() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<div className="bg-black text-white">
+		<div className="text-white bg-black">
 			<Router>
 				<Routes>
 					<Route
@@ -29,6 +30,9 @@ function App() {
 					<Route
 						path="/*"
 						element={<h1>ErrorPage</h1>}></Route>
+					<Route
+						path="/try"
+						element={<NewPage></NewPage>}></Route>
 				</Routes>
 			</Router>
 		</div>
