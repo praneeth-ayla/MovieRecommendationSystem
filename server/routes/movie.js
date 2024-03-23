@@ -9,19 +9,35 @@ router.put('/', authMiddleware, async (req, res) => {
     try {
         const watchedList = req.body.watchedList;
 
-        // Find the user by userId (req.userId) and update their previouslyWatched field
-        const response = await User.updateOne(
-            { _id: req.userId }, // Find user by userId
-            { $push: { previoulyWatched: { $each: watchedList } } } // Push each movie in movieList to previouslyWatched array
+        // Find the user by userId (req.userId) and update their previoulyWatched field
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        // Filter out duplicates from watchedList
+        const uniqueWatchedList = [...new Set(watchedList)];
+
+
+        // Add uniqueWatchedList directly to previoulyWatched array
+        const updateResult = await User.updateOne(
+            { _id: req.userId },
+            { $addToSet: { previoulyWatched: { $each: uniqueWatchedList } } }
         );
+
+
+        if (updateResult.modifiedCount === 0) {
+            return res.status(204).json({ message: "No changes were made to previously watched list" });
+        }
 
         res.status(200).json({ message: "Movies added to previously watched list" });
     } catch (error) {
-        console.log(req.body.watchedList)
         console.error("Error updating previously watched movies:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
 
 
 router.get('/watched-list', authMiddleware, async (req, res) => {
@@ -32,6 +48,27 @@ router.get('/watched-list', authMiddleware, async (req, res) => {
         watchedList
     })
 })
+
+router.delete('/', authMiddleware, async (req, res) => {
+    try {
+        const deleteList = req.body.deleteList; // Assuming deleteList contains the elements to be deleted
+
+        const response = await User.updateOne(
+            { _id: req.userId, previoulyWatched: { $in: deleteList } },
+            { $pull: { previoulyWatched: { $in: deleteList } } }
+        );
+
+        if (response.modifiedCount > 0) {
+            res.status(200).json({ message: "Selected items deleted from previously watched list" });
+        } else {
+            res.status(404).json({ error: "No items were deleted or the items were not found in the list" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error", errorMessage: error.message });
+    }
+
+});
+
 
 
 router.get('/', authMiddleware, async (req, res) => {
@@ -74,21 +111,8 @@ router.get('/', authMiddleware, async (req, res) => {
     });
 });
 
-router.delete('/', authMiddleware, async (req, res) => {
-    try {
-        const deleteList = req.body.deleteList; // Assuming deleteList contains the elements to be deleted
 
-        const response = await User.updateOne(
-            { _id: req.userId },
-            { $pull: { previouslyWatched: { $in: deleteList } } }
-        );
 
-        res.status(200).json({ message: "Selected items deleted from previously watched list" });
-    } catch (error) {
-        console.error("Error deleting selected items from previously watched list:", error);
-        res.status(500).json({ error: "Internal server error" });
-    }
-});
 
 
 module.exports = router;
