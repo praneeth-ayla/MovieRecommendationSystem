@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import useGetWatchedFavoritesList from "../hooks/useGetWatchedFavoritesList";
 import useGetFullDetails from "../hooks/useGetFullDetails";
+import useDeleteFromWatchedFavorites from "../hooks/useDeleteFromWatchedFavorites";
 
 export default function WatchedFavorites() {
 	const { watchedFavoritesList } = useGetWatchedFavoritesList();
@@ -30,7 +31,10 @@ export default function WatchedFavorites() {
 								movie={movie}
 								key={id}
 								deleteB={true}
-								addB={false}></Card>
+								addB={false}
+								deleteFun={
+									useDeleteFromWatchedFavorites
+								}></Card>
 						))}
 					</div>
 				)}

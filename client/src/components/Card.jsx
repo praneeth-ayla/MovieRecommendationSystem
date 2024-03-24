@@ -2,49 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SkeletonCard from "./SkeletonCard";
 
-export default function Card({ movie, deleteB, addB }) {
+export default function Card({ movie, deleteB, addB, deleteFun, addFun }) {
 	const [isLoading, setIsLoading] = useState(true);
-
-	async function addToWatchList(id) {
-		const res = await axios
-			.put(
-				"http://localhost:3000/movie",
-				{
-					watchedList: [id],
-				},
-				{
-					headers: {
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZlYzk2ZTlkMTY5NzFiMDNkMTVhZjMiLCJpYXQiOjE3MTExOTY5NjF9.f70fMpA3saA1_eS9XxAwYFR2CDw5gw2_yxnRBlHXH50",
-					},
-				}
-			)
-			.then((e) => {
-				console.log(e);
-			});
-	}
-
-	async function deleteFromWatchList(id) {
-		try {
-			const res = await axios.delete("http://localhost:3000/movie", {
-				data: {
-					deleteList: [id],
-				},
-				headers: {
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZlYzk2ZTlkMTY5NzFiMDNkMTVhZjMiLCJpYXQiOjE3MTExOTY5NjF9.f70fMpA3saA1_eS9XxAwYFR2CDw5gw2_yxnRBlHXH50",
-				},
-			});
-			console.log(res);
-		} catch (error) {
-			console.error("Error deleting from watch list:", error);
-		}
-	}
 
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 1500);
+		}, 200);
 	}, []);
 
 	return (
@@ -68,7 +32,7 @@ export default function Card({ movie, deleteB, addB }) {
 								{addB ? (
 									<svg
 										onClick={() => {
-											addToWatchList(movie.id);
+											addFun(movie.id);
 										}}
 										className="h-7 hover:h-9"
 										xmlns="http://www.w3.org/2000/svg"
@@ -107,10 +71,8 @@ export default function Card({ movie, deleteB, addB }) {
 					</div>
 					{deleteB ? (
 						<svg
+							onClick={() => deleteFun(movie.id)}
 							className="absolute top-0 right-0 w-6 h-6 mt-2 mr-2 text-white cursor-pointer"
-							onClick={() => {
-								deleteFromWatchList(movie.id);
-							}}
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 							fill="none"

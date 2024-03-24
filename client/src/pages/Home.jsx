@@ -2,14 +2,13 @@ import useGetFullDetails from "../hooks/useGetFullDetails";
 import Card from "../components/Card";
 import NavBar from "../components/Navbar";
 import useGetRecommendedList from "../hooks/useGetRecommendations";
-import useGetWatchedFavoritesList from "../hooks/useGetWatchedFavoritesList";
-import SkeletonCard from "../components/SkeletonCard";
+import { useState } from "react";
+import useAddtoWatchedFavorites from "../hooks/useAddtoWatchedFavorites";
 
 export default function Home() {
-	const { watchedFavoritesList } = useGetWatchedFavoritesList();
-
 	const { recommendedList, recommendedLoading } = useGetRecommendedList();
 	const { getFullDetails } = useGetFullDetails(recommendedList);
+	const { reload, setReload } = useState(false);
 
 	// console.log(recommendedLoading);
 	return (
@@ -39,6 +38,8 @@ export default function Home() {
 								key={id}
 								deleteB={false}
 								addB={true}
+								// deleteFun={alertFun}
+								addFun={useAddtoWatchedFavorites}
 							/>
 						))}
 					</div>

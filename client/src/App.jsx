@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import "./App.css";
 import Home from "./pages/Home";
 import SearchPage from "./pages/SearchPage";
 import WatchedFavorites from "./pages/WatchedFavorites";
@@ -11,6 +9,7 @@ function App() {
 			<Router>
 				<Routes>
 					<Route
+						index
 						path="/home"
 						element={<Home></Home>}></Route>
 					<Route
