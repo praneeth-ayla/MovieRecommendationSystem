@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import useGetSearchedList from "../hooks/useSearchedList";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import useAddtoWatchedFavorites from "../hooks/useAddtoWatchedFavorites";
 
 export default function SearchPage() {
 	const param = useParams().name;
@@ -27,7 +28,8 @@ export default function SearchPage() {
 								movie={movie}
 								key={id}
 								deleteB={false}
-								addB={true}></Card>
+								addB={true}
+								addFun={useAddtoWatchedFavorites}></Card>
 						))}
 					</div>
 				)}
