@@ -47,7 +47,7 @@ export default function Navbar({ currentPage }) {
 					/>
 				</form>
 			</div>
-			{/* <div className="pl-10">profile</div> */}
+			<div className="pl-10">profile</div>
 		</div>
 	);
 }
