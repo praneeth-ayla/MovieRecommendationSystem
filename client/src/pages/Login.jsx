@@ -6,6 +6,7 @@ import Logo from "../components/Logo";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 	const formik = useFormik({
@@ -37,7 +38,7 @@ function Login() {
 					// 	autoClose: 1200,
 					// });
 					setTimeout(() => {
-						navigate("/home");
+						navigate("/");
 						window.location.reload();
 						console.log(localStorage.token);
 					}, 2000);
@@ -52,6 +53,9 @@ function Login() {
 			}
 		},
 	});
+
+	const navigate = useNavigate();
+
 	return (
 		<section className="flex items-center justify-center min-h-screen ">
 			<div className="flex max-w-3xl p-5 shadow-lg bg-slate-900 rounded-2xl">

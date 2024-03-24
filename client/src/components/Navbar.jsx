@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 export default function Navbar({ currentPage }) {
 	const [searchTerm, setSearchTerm] = useState("");
@@ -7,7 +8,7 @@ export default function Navbar({ currentPage }) {
 	return (
 		<div className="grid grid-cols-3 py-5 text-center bg-gray-950 ">
 			<Link
-				to={"/home"}
+				to={"/"}
 				className="flex justify-center gap-3">
 				<img
 					src="https://flowbite.com/docs/images/logo.svg"
@@ -27,7 +28,7 @@ export default function Navbar({ currentPage }) {
 					Watched Favorites
 				</Link>
 				<Link
-					to={"/home"}
+					to={"/"}
 					className={
 						currentPage === "home"
 							? "font-extrabold border-b-2"
@@ -47,7 +48,8 @@ export default function Navbar({ currentPage }) {
 					/>
 				</form>
 			</div>
-			<div className="pl-10">profile</div>
+			<div className="pl-10">profile jfsdalkfj dsfja</div>
+			<Logout></Logout>
 		</div>
 	);
 }

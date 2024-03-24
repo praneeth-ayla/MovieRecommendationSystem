@@ -7,17 +7,14 @@ async function useDeleteFromWatchedFavorites(id) {
 				deleteList: [id],
 			},
 			headers: {
-				Authorization:
-					"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZlYzk2ZTlkMTY5NzFiMDNkMTVhZjMiLCJpYXQiOjE3MTExOTY5NjF9.f70fMpA3saA1_eS9XxAwYFR2CDw5gw2_yxnRBlHXH50",
+				Authorization: "Bearer " + localStorage.token,
 			},
 		});
 
-		console.log(res);
 		if (res.status === 200) {
 			window.location.reload();
 
 			alert("file deleted");
-			// watchedFavoritesList = useGetWatchedFavoritesList();
 		}
 	} catch (error) {
 		console.error("Error deleting from watch list:", error);
