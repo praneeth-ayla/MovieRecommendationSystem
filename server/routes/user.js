@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
     const userId = userData._id;
 
     const token = jwt.sign({
-        userId
+        userId, name: userData.name
     }, process.env.JWT_SECRET)
 
     res.json({
@@ -73,7 +73,7 @@ router.post("/signin", async (req, res) => {
             password: req.body.password
         })
 
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET)
+        const token = jwt.sign({ userId: user._id, name: user.name }, process.env.JWT_SECRET)
 
         res.json({
             msg: "User Signin Successfull",

@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Logout() {
 	function logoutUser() {
-		console.log(localStorage.token);
 		// localStorage.token = "";
 		localStorage.removeItem("token"); // Remove the token from localStorage
 		toast.success("Redirecting to Login page", {
@@ -17,7 +16,7 @@ export default function Logout() {
 	return (
 		<div>
 			<button
-				className="p-3 font-bold text-white bg-blue-600 rounded-lg"
+				className="p-1 font-bold text-white bg-blue-600 rounded-lg"
 				onClick={() => logoutUser()}>
 				Log out
 			</button>
