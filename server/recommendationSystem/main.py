@@ -49,8 +49,8 @@ for movie_id in watchedList:
     if indexes.size > 0:
         common_movies += similarityScoreCreator(indexes[0])
 
-# Output the top 20 recommended movie IDs
-outList = list(set(common_movies))[:20]
+# Output the top 50 recommended movie IDs
+outList = list(set(common_movies))[:50]
 outList = [int(x) for x in outList]
 
 # Send the recommendations back to Node.js
