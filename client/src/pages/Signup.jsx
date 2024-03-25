@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
 	const formik = useFormik({
@@ -30,7 +32,6 @@ function Signup() {
 		}),
 
 		onSubmit: async (values) => {
-			console.log(values);
 			const data = {
 				name: values.name,
 				email: values.email,
@@ -48,20 +49,20 @@ function Signup() {
 				);
 				if (res.status === 200) {
 					localStorage.token = res.data.token;
-					// toast.success("User Created", {
-					// 	theme: "light",
-					// 	autoClose: 1200,
-					// });
+					toast.success("User Created", {
+						theme: "dark",
+						autoClose: 1200,
+					});
 					setTimeout(() => {
 						navigate("/");
+						window.location.reload();
 					}, 2000);
 				}
 			} catch (e) {
-				console.log(res);
-				// toast.warn("Email already taken / Incorrect inputs", {
-				// 	theme: "light",
-				// 	autoClose: 1200,
-				// });
+				toast.warn("Email already taken / Incorrect inputs", {
+					theme: "dark",
+					autoClose: 1200,
+				});
 			}
 		},
 	});
@@ -173,6 +174,7 @@ function Signup() {
 					</div>
 				</div>
 			</div>
+			<ToastContainer></ToastContainer>
 		</section>
 	);
 }

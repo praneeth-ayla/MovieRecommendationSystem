@@ -4,6 +4,8 @@ import Card from "../components/Card";
 import useGetWatchedFavoritesList from "../hooks/useGetWatchedFavoritesList";
 import useGetFullDetails from "../hooks/useGetFullDetails";
 import useDeleteFromWatchedFavorites from "../hooks/useDeleteFromWatchedFavorites";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function WatchedFavorites() {
 	const { watchedFavoritesList } = useGetWatchedFavoritesList();
@@ -32,13 +34,15 @@ export default function WatchedFavorites() {
 								key={id}
 								deleteB={true}
 								addB={false}
-								deleteFun={
-									useDeleteFromWatchedFavorites
-								}></Card>
+								deleteFun={useDeleteFromWatchedFavorites}
+								cardTimer={0}
+								toast={toast}></Card>
+							// toastDelete={() => toast("hiiiiii")}></Card>
 						))}
 					</div>
 				)}
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }

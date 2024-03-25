@@ -11,11 +11,12 @@ async function useDeleteFromWatchedFavorites(id) {
 			},
 		});
 
-		if (res.status === 200) {
-			window.location.reload();
-
-			alert("file deleted");
-		}
+		return res;
+		// if (res.status === 200) {
+		// 	setTimeout(() => {
+		// 		window.location.reload();
+		// 	}, 1000);
+		// }
 	} catch (error) {
 		console.error("Error deleting from watch list:", error);
 	}

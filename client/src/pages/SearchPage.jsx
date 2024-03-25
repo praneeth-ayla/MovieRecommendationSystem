@@ -4,6 +4,8 @@ import useGetSearchedList from "../hooks/useSearchedList";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import useAddtoWatchedFavorites from "../hooks/useAddtoWatchedFavorites";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SearchPage() {
 	const param = useParams().name;
@@ -29,11 +31,15 @@ export default function SearchPage() {
 								key={id}
 								deleteB={false}
 								addB={true}
-								addFun={useAddtoWatchedFavorites}></Card>
+								toast={toast}
+								cardTimer={300}
+								addFun={useAddtoWatchedFavorites}
+							/>
 						))}
 					</div>
 				)}
 			</div>
+			<ToastContainer></ToastContainer>
 		</div>
 	);
 }

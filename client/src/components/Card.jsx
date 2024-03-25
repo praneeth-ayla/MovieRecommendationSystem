@@ -1,14 +1,53 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SkeletonCard from "./SkeletonCard";
 
-export default function Card({ movie, deleteB, addB, deleteFun, addFun }) {
+export default function Card({
+	movie,
+	deleteB,
+	addB,
+	deleteFun,
+	addFun,
+	cardTimer,
+	toast,
+}) {
 	const [isLoading, setIsLoading] = useState(true);
+
+	function handleDelete(res) {
+		if (res.status === 200) {
+			// toast.success("deleted", { theme: "dark", autoClose: 1500 });
+			toast.success("Movie Deleted from Watched Favorites", {
+				theme: "dark",
+				autoClose: 1500,
+			});
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
+		}
+		console.log(res);
+	}
+
+	function handleAdd(res) {
+		if (res.status === 200) {
+			// toast.success("deleted", { theme: "dark", autoClose: 1500 });
+			toast.success("Movie Added ", {
+				theme: "dark",
+				autoClose: 1500,
+			});
+		}
+		if (res.status === 204) {
+			// toast.success("deleted", { theme: "dark", autoClose: 1500 });
+			toast.warning("Movie is Already your in your Watched Favorites ", {
+				theme: "dark",
+				autoClose: 1500,
+			});
+		}
+		console.log(res);
+	}
 
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 200);
+		}, cardTimer);
 	}, []);
 
 	return (
@@ -31,8 +70,9 @@ export default function Card({ movie, deleteB, addB, deleteFun, addFun }) {
 							<span>
 								{addB ? (
 									<svg
-										onClick={() => {
-											addFun(movie.id);
+										onClick={async () => {
+											const res = await addFun(movie.id);
+											handleAdd(res);
 										}}
 										className="h-7 hover:h-9"
 										xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +111,10 @@ export default function Card({ movie, deleteB, addB, deleteFun, addFun }) {
 					</div>
 					{deleteB ? (
 						<svg
-							onClick={() => deleteFun(movie.id)}
+							onClick={async () => {
+								const res = await deleteFun(movie.id);
+								handleDelete(res);
+							}}
 							className="absolute top-0 right-0 w-6 h-6 mt-2 mr-2 text-white cursor-pointer"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"

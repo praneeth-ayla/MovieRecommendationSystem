@@ -3,6 +3,8 @@ import Card from "../components/Card";
 import NavBar from "../components/Navbar";
 import useGetRecommendedList from "../hooks/useGetRecommendations";
 import useAddtoWatchedFavorites from "../hooks/useAddtoWatchedFavorites";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
 	const { recommendedList, recommendedLoading } = useGetRecommendedList();
@@ -22,7 +24,12 @@ export default function Home() {
 					</h1>
 				) : getFullDetails.length === 0 ? (
 					<div>
-						<h2>Get Started</h2>
+						<h2>Get Started: </h2>
+						<h3>
+							Movie Recommendations are generated based on your
+							Watched Favorites list's Genres, Cast, Director,
+							Keywords, Tagline.
+						</h3>
 						<h1 className="text-2xl font-bold text-center p-28">
 							Search Movies and Add them to your Watched Favorites
 							to Generate Recommendation based on them
@@ -36,11 +43,14 @@ export default function Home() {
 								key={id}
 								deleteB={false}
 								addB={true}
+								toast={toast}
+								cardTimer={1000}
 								addFun={useAddtoWatchedFavorites}
 							/>
 						))}
 					</div>
 				)}
+				<ToastContainer />
 			</div>
 		</div>
 	);

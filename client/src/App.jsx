@@ -11,7 +11,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 function App() {
-	const isLoggedIn = localStorage.token !== "";
+	const isLoggedIn =
+		localStorage.token !== undefined && localStorage.token !== "";
+
 	return (
 		<div className="text-white bg-black">
 			<Router>
