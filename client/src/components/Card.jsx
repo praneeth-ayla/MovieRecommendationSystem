@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SkeletonCard from "./SkeletonCard";
+import { Link } from "react-router-dom";
 
 export default function Card({
 	movie,
@@ -52,6 +53,7 @@ export default function Card({
 
 	return (
 		<div
+			title="Click on title to view the movie page"
 			style={{ position: "relative" }}
 			className="hover:scale-110">
 			{isLoading ? (
@@ -64,9 +66,20 @@ export default function Card({
 							movie ? movie.poster_path : ""
 						}`}
 					/>
-					<div className="absolute bottom-0 flex flex-col justify-end p-0 transition-opacity duration-200 opacity-0 hover:opacity-100 h-290 w-85 bg-gradient-to-t from-transparent to-black md:p-4 cards__overlay ">
+					<div className="absolute bottom-0 flex flex-col justify-end p-0 transition-opacity duration-100 opacity-0 hover:opacity-100 h-290 w-85 bg-gradient-to-t from-transparent to-black md:p-4 cards__overlay ">
 						<div className="flex justify-between mb-1 text-xl font-bold">
-							<span>{movie ? movie.original_title : ""} </span>
+							<Link to={`/movie/${movie.id}`}>
+								<span title={movie ? movie.original_title : ""}>
+									{movie
+										? movie.original_title.length < 15
+											? movie.original_title
+											: movie.original_title.slice(
+													0,
+													20
+											  ) + "..."
+										: ""}
+								</span>
+							</Link>
 							<span>
 								{addB ? (
 									<svg
@@ -105,6 +118,7 @@ export default function Card({
 								</span>
 							</div>
 						</div>
+
 						<div className="mb-1 text-sm italic card__description">
 							{movie ? movie.overview.slice(0, 118) + "..." : ""}
 						</div>

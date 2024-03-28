@@ -9,6 +9,7 @@ import SearchPage from "./pages/SearchPage";
 import WatchedFavorites from "./pages/WatchedFavorites";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
 	const isLoggedIn =
@@ -23,9 +24,7 @@ function App() {
 							<Route
 								path="/"
 								element={<Home></Home>}></Route>
-							<Route
-								path="/movie/:id"
-								element={<h1>moviePage</h1>}></Route>
+
 							<Route
 								path="/search/:name"
 								element={<SearchPage />}></Route>
@@ -37,6 +36,10 @@ function App() {
 							<Route
 								path="/*"
 								element={<h1>ErrorPage</h1>}></Route>
+							<Route
+								path="/movie/:id"
+								element={<MovieDetails />}
+							/>
 							<Route
 								path="*"
 								element={<Navigate to="/" />}
