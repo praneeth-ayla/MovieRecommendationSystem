@@ -1,5 +1,7 @@
 # Movie Recommendation System
+## Overview
 
+The Movie Recommendation System is a platform designed to provide personalized movie recommendations to users based on their preferences and viewing history. Leveraging a combination of frontend and backend technologies, as well as machine learning algorithms, the system aims to enhance the user experience by offering tailored movie suggestions.
 ## Client
 
 ### Usage
