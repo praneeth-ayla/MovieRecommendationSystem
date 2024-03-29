@@ -28,17 +28,18 @@ export default function WatchedFavorites() {
 					</div>
 				) : (
 					<div className="grid grid-cols-1 gap-3 mb-6 xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3">
-						{getFullDetails.map((movie, id) => (
-							<Card
-								movie={movie}
-								key={id}
-								deleteB={true}
-								addB={false}
-								deleteFun={useDeleteFromWatchedFavorites}
-								cardTimer={0}
-								toast={toast}></Card>
-							// toastDelete={() => toast("hiiiiii")}></Card>
-						))}
+						{getFullDetails &&
+							getFullDetails.map((movie, id) => (
+								<Card
+									movie={movie}
+									key={id}
+									deleteB={true}
+									addB={false}
+									deleteFun={useDeleteFromWatchedFavorites}
+									cardTimer={0}
+									toast={toast}></Card>
+								// toastDelete={() => toast("hiiiiii")}></Card>
+							))}
 					</div>
 				)}
 			</div>

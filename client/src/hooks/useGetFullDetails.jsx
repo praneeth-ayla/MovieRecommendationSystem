@@ -12,13 +12,22 @@ function useGetFullDetails(list) {
 			try {
 				const fullList = await Promise.all(
 					list.map(async (item) => {
-						const result = await axios.get(
-							`https://api.themoviedb.org/3/movie/${item}?api_key=1cf50e6248dc270629e802686245c2c8`
-						);
-						return result.data;
+						try {
+							const result = await axios.get(
+								`https://api.themoviedb.org/3/movie/${item}?api_key=1cf50e6248dc270629e802686245c2c8`
+							);
+							return result.data;
+						} catch (error) {
+							console.error(
+								"Error fetching data for movie ID:",
+								item,
+								error
+							);
+							return null; // Return null for failed requests
+						}
 					})
 				);
-				setGetFullDetails(fullList);
+				setGetFullDetails(fullList.filter((movie) => movie !== null)); // Filter out null values
 				setFullLoading(false);
 			} catch (error) {
 				console.error("Error fetching data:", error);
@@ -29,7 +38,6 @@ function useGetFullDetails(list) {
 		fetchData();
 	}, [list]);
 
-	// console.log(getFullDetails);
 	return { getFullDetails, fullLoading };
 }
 
