@@ -33,7 +33,7 @@ router.put('/', authMiddleware, async (req, res) => {
 
         res.status(200).json({ message: "Movies added to previously watched list" });
     } catch (error) {
-        console.error("Error updating previously watched movies:", error);
+        // console.error("Error updating previously watched movies:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 });
@@ -95,7 +95,7 @@ router.get('/', authMiddleware, async (req, res) => {
 
     // Handle errors from the Python script
     pythonProcess.stderr.on('data', (data) => {
-        console.error('Error executing Python script:', data.toString());
+        // console.error('Error executing Python script:', data.toString());
         // res.status(500).send('Internal Server Error'); // Remove or comment out this line
     });
 
@@ -105,7 +105,7 @@ router.get('/', authMiddleware, async (req, res) => {
             recommendations = JSON.parse(recommendations);
             res.status(200).json({ recommendations });
         } catch (error) {
-            console.error('Error parsing recommendations:', error);
+            // console.error('Error parsing recommendations:', error);
             res.status(500).send('Internal Server Error');
         }
     });
