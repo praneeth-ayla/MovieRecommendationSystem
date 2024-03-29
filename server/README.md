@@ -40,13 +40,17 @@ To run the server locally, follow these steps:
     npm install
     ```
 
+    ```
+    pip install numpy pandas scikit-learn
+    ```
+
 4. Start the server:
 
     ```
     npm run dev
     ```
 
-5. The server will start at port 3000 by default.
+5. The server will start at port localhost:3000 by default.
 
 ## Recommendation System Algorithm
 
@@ -66,29 +70,29 @@ The Python code for the recommendation system algorithm can be found in the `rec
 
 ### Movie Routes
 
-#### PUT https://3000/movie
+#### PUT https://localhost:3000/movie
 
 -   Adds movies to the user's watched list.
 
-#### GET https://3000/movie/watched-list
+#### GET https://localhost:3000/movie/watched-list
 
 -   Retrieves the user's watched list.
 
-#### DELETE https://3000/movie
+#### DELETE https://localhost:3000/movie
 
 -   Deletes selected movies from the user's watched list.
 
-#### GET https://3000/movie
+#### GET https://localhost:3000/movie
 
 -   Provides movie recommendations based on the user's watched list.
 
 ### User Endpoints
 
-#### POST https://3000/user/signup
+#### POST https://localhost:3000/user/signup
 
 -   Registers a new user.
 
-#### POST https://3000/user/signin
+#### POST https://localhost:3000/user/signin
 
 -   Authenticates an existing user.
 

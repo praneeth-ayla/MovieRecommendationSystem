@@ -50,6 +50,8 @@ Before accessing movie recommendations, you need to sign up or sign in to your a
 
 2. **Search and Add Movies**: Navigate to the search page and enter the title of the movie you want to add. Click on the plus icon on the movie card to add it to your watched favorites list.
 
-3. **View Recommendations**: After adding movies to your watched favorites list, navigate to the home tab to view personalized movie recommendations based on the movies you've added.
+3. **Movie Details**: Click on the movie title on the movie card to navigate to movie details page.
 
-4. **Manage Watched Favorites**: You can access all the movies you've added to your watched favorites list in the watched favorites tab. From there, you can delete any movies you no longer want in your list.
+4. **View Recommendations**: After adding movies to your watched favorites list, navigate to the home tab to view personalized movie recommendations based on the movies you've added.
+
+5. **Manage Watched Favorites**: You can access all the movies you've added to your watched favorites list in the watched favorites tab. From there, you can delete any movies you no longer want in your list.

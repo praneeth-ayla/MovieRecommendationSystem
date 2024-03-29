@@ -1,7 +1,9 @@
 # Movie Recommendation System
+
 ## Overview
 
 The Movie Recommendation System is a platform designed to provide personalized movie recommendations to users based on their preferences and viewing history. Leveraging a combination of frontend and backend technologies, as well as machine learning algorithms, the system aims to enhance the user experience by offering tailored movie suggestions.
+
 ## Client
 
 ### Usage
@@ -10,9 +12,11 @@ The Movie Recommendation System is a platform designed to provide personalized m
 
 2. **Search and Add Movies**: Navigate to the search page and enter the title of the movie you want to add. Click on the plus icon on the movie card to add it to your watched favorites list.
 
-3. **View Recommendations**: After adding movies to your watched favorites list, navigate to the home tab to view personalized movie recommendations based on the movies you've added.
+3. **Movie Details**: Click on the movie title on the movie card to navigate to movie details page.
 
-4. **Manage Watched Favorites**: You can access all the movies you've added to your watched favorites list in the watched favorites tab. From there, you can delete any movies you no longer want in your list.
+4. **View Recommendations**: After adding movies to your watched favorites list, navigate to the home tab to view personalized movie recommendations based on the movies you've added.
+
+5. **Manage Watched Favorites**: You can access all the movies you've added to your watched favorites list in the watched favorites tab. From there, you can delete any movies you no longer want in your list.
 
 ## Server
 
@@ -40,12 +44,12 @@ The movie recommendation system utilizes a Python algorithm to generate movie re
 
 #### Backend Routes
 
--   **PUT** [https://3000/movie](https://3000/movie): Adds movies to the user's watched list.
--   **GET** [https://3000/movie/watched-list](https://3000/movie/watched-list): Retrieves the user's watched list.
--   **DELETE** [https://3000/movie](https://3000/movie): Deletes selected movies from the user's watched list.
--   **GET** [https://3000/movie](https://3000/movie): Provides movie recommendations based on the user's watched list.
--   **POST** [https://3000/user/signup](https://3000/user/signup): Registers a new user.
--   **POST** [https://3000/user/signin](https://3000/user/signin): Authenticates an existing user.
+-   **PUT** [https://localhost:3000/movie](https://localhost:3000/movie): Adds movies to the user's watched list.
+-   **GET** [https://localhost:3000/movie/watched-list](https://localhost:3000/movie/watched-list): Retrieves the user's watched list.
+-   **DELETE** [https://localhost:3000/movie](https://localhost:3000/movie): Deletes selected movies from the user's watched list.
+-   **GET** [https://localhost:3000/movie](https://localhost:3000/movie): Provides movie recommendations based on the user's watched list.
+-   **POST** [https://localhost:3000/user/signup](https://localhost:3000/user/signup): Registers a new user.
+-   **POST** [https://localhost:3000/user/signin](https://localhost:3000/user/signin): Authenticates an existing user.
 
 ### Dependencies
 
