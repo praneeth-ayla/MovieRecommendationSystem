@@ -30,7 +30,7 @@ export default function Card({
 	function handleAdd(res) {
 		if (res.status === 200) {
 			// toast.success("deleted", { theme: "dark", autoClose: 1500 });
-			toast.success("Movie Added ", {
+			toast.success("Movie Added to watched Favorites", {
 				theme: "dark",
 				autoClose: 1500,
 			});
