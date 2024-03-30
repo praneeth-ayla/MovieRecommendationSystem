@@ -8,7 +8,7 @@ function useGetRecommendedList() {
 	useEffect(() => {
 		async function fetchData() {
 			await axios
-				.get("http://localhost:3000/movie/", {
+				.get("http://15.206.74.140:3000/movie/", {
 					headers: {
 						Authorization: "Bearer " + localStorage.token,
 					},

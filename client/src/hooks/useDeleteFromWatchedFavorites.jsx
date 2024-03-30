@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function useDeleteFromWatchedFavorites(id) {
 	try {
-		const res = await axios.delete("http://localhost:3000/movie", {
+		const res = await axios.delete("http://15.206.74.140:3000/movie", {
 			data: {
 				deleteList: [id],
 			},

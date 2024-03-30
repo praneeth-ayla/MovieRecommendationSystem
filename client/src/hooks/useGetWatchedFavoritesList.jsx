@@ -9,7 +9,7 @@ function useGetWatchedFavoritesList() {
 	useEffect(() => {
 		async function fetchData() {
 			await axios
-				.get("http://localhost:3000/movie/watched-list", {
+				.get("http://15.206.74.140:3000/movie/watched-list", {
 					headers: {
 						Authorization: "Bearer " + localStorage.token,
 					},

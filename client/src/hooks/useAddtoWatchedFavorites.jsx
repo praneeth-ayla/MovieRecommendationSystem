@@ -3,7 +3,7 @@ import axios from "axios";
 async function useAddtoWatchedFavorites(id) {
 	try {
 		const res = await axios.put(
-			"http://localhost:3000/movie",
+			"http://15.206.74.140:3000/movie",
 			{
 				watchedList: [id],
 			},

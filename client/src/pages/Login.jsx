@@ -28,7 +28,7 @@ function Login() {
 		onSubmit: async (values) => {
 			try {
 				const res = await axios.post(
-					"http://localhost:3000/user/signin/",
+					"http://15.206.74.140:3000/user/signin/",
 
 					values
 				);
